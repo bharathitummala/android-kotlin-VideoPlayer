@@ -1,6 +1,8 @@
 package com.example.videoplayerapp
 
 import android.os.Bundle
+import android.widget.MediaController
+import android.widget.VideoView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +17,21 @@ import com.example.videoplayerapp.ui.theme.VideoPlayerAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // displaying videos from local storage
+        val videoView: VideoView = findViewById(R.id.videoView)
+        videoView.setVideoPath(
+            "android.resource://"
+                +packageName+"/" +R.raw.mountains)
+
+       val mediaController = MediaController(this)
+        mediaController.setMediaPlayer(videoView)
+        videoView.setMediaController(mediaController)
+
 
     }
 }
+
+
 
